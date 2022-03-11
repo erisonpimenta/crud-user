@@ -1,0 +1,95 @@
+<div class="container">
+  <h1 class="title">Cadastro de usuario</h1>
+
+  <form [formGroup]="userForm" class="form" (submit)="submit()">
+    <mat-form-field appearance="outline">
+      <mat-label>Nome</mat-label>
+      <input matInput formControlName="nome" />
+      <mat-error *ngIf="displayMessage.nome">
+        <span [innerHtml]="displayMessage.nome"></span>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Email</mat-label>
+      <input matInput formControlName="email" />
+      <mat-error *ngIf="displayMessage.email">
+        <span [innerHtml]="displayMessage.email"></span>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>CPF</mat-label>
+      <input
+        matInput
+        formControlName="cpf"
+        [textMask]="{ mask: MASKS.cpf.textMask }"
+      />
+      <mat-error *ngIf="displayMessage.cpf">
+        <span [innerHtml]="displayMessage.cpf"></span>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Data de nascimento</mat-label>
+      <input
+        matInput
+        formControlName="dataNascimento"
+        placeholder="DD/MM/AAAA"
+        [textMask]="{ mask: MASKS.data.textMask }"
+      />
+      <mat-error *ngIf="displayMessage.dataNascimento">
+        <span [innerHtml]="displayMessage.dataNascimento"></span>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>CEP</mat-label>
+      <input
+        matInput
+        formControlName="cep"
+        (blur)="searchAddress(cep()?.value)"
+        [textMask]="{ mask: MASKS.cep.textMask }"
+      />
+      <mat-error *ngIf="displayMessage.cep">
+        <span [innerHtml]="displayMessage.cep"></span>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Estado</mat-label>
+      <input matInput formControlName="estado" />
+      <mat-error *ngIf="displayMessage.estado">
+        <span [innerHtml]="displayMessage.estado"></span>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Cidade</mat-label>
+      <input matInput formControlName="cidade" />
+      <mat-error *ngIf="displayMessage.cidade">
+        <span [innerHtml]="displayMessage.cidade"></span>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Bairro</mat-label>
+      <input matInput formControlName="bairro" />
+      <mat-error *ngIf="displayMessage.bairro">
+        <span [innerHtml]="displayMessage.bairro"></span>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Logradouro</mat-label>
+      <input matInput formControlName="logradouro" />
+      <mat-error *ngIf="displayMessage.logradouro">
+        <span [innerHtml]="displayMessage.logradouro"></span>
+      </mat-error>
+    </mat-form-field>
+
+    <button mat-raised-button color="primary" [disabled]="!userForm.valid">
+      salvar
+    </button>
+  </form>
+</div>
